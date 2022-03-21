@@ -1,7 +1,7 @@
 const Slack = require('slack-node');  // 슬랙 모듈 사용
 
 // apiToken = "xoxb-2187790532-3291583852624-iTA91CkKeJvKvqLkJAm2lXPk";
-apiToken = "xoxb-20949960309-3261241717542-pNMYlZmL9uhd1yxxDOy2FoXR";
+apiToken = "xoxb-20949960309-3261241717542-nzII7OY6gPWUqmjqcQMNdO9H";
 const slack = new Slack(apiToken);
 
 const send = async(message) => {
