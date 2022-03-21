@@ -1,6 +1,6 @@
 const { WebClient } = require('@slack/web-api');
 
-apiToken = "xoxb-20949960309-3261241717542-MqWwuZObo5oInEON5edqgG4c";
+apiToken = "xoxb-20949960309-3261241717542-BKHytXJwFzbUDLzOKpgQJPYr";
 const web = new WebClient(apiToken);
 // The current date
 const currentTime = new Date().toTimeString();
