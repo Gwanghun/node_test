@@ -8,9 +8,10 @@ const send = async(message) => {
   slack.api('chat.postMessage', {
 	  username: 'hooeni_bot',  // 슬랙에 표시될 봇이름
 	  text:message,
-	  channel:'#general'  // 전송될 채널 및 유저
+	  channel:'#test'  // 전송될 채널 및 유저
 	}, function(err, response){
 	  console.log(response);
+	  console.log(err);
 	});
 }
 
