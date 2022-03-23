@@ -24,19 +24,19 @@ console.log( birthday.viewText() );
 
 const task = () => {
   const birthday_list = {
-    "0322": "임광훈 생일 11111",
-    "0323": "임광훈 생일 22222",
-    "0324": "임광훈 생일 33333",
+    "0322": "임광훈 생일 22222",
+    "0323": "임광훈 생일 33333",
+    "0324": "임광훈 생일 44444",
+    "0325": "임광훈 생일 55555",
+    "0326": "임광훈 생일 66666",
+    "0327": "임광훈 생일 77777"
   }
   
   let now = new Date();
   const today = ("0" + (now.getMonth() + 1)).slice(-2) + ("0" + now.getDate()).slice(-2);
   
   if ( birthday_list[today] != undefined ) {
-    // console.log(birthday_list[today] + "님 오늘 생일입니다.");
-    
     apiToken = process.env.SLACK_TOKEN
-    // apiToken = "xoxb-20949960309-3261241717542-rQeTVnWsuny7xhr7PPEiXGZM"
     const web = new WebClient(apiToken);
     // The current date
     const currentTime = new Date().toTimeString();
@@ -51,18 +51,31 @@ const task = () => {
         });
         console.log('Message posted!');
       } catch (error) {
-        console.log(error);
+        if ( error.data.ok == false ) {
+          job.stop();
+          console.log(error.data.err);
+          process.exit()
+        }
       }
 
     })();
 
   }
 }
-const stopAlert = () => console.log('Cron Stopped.'); // 정지 알림
+
+// 정지 알림
+const stopAlert = () => {
+  job.stop();
+  console.log('Cron Stopped.');
+  process.exit()
+}  
  
 // CronJob(Cron 표현식, 실행할 함수, 종료 시 실행할 함수, 자동 시작 여부, TimeZone);
+
 const job = new CronJob('00 30 9 * * *', task, stopAlert, false, 'Asia/Seoul');
+// const job = new CronJob('*/2 * * * * *', task, stopAlert, false, 'Asia/Seoul');
 job.start();
+
 
 
 /*
